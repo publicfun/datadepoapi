@@ -22,6 +22,15 @@ namespace Datadepo\Api\Structures;
 class DataLine extends AbstractStructure
 {
   
+  /** @var string */
+  private $_jsonImages = FALSE;
+  
+  /** @var string */
+  private $_jsonParameters = FALSE;
+  
+  /** @var string */
+  private $_jsonRelated = FALSE;
+  
   /**
    * @return string
    */
@@ -148,11 +157,10 @@ class DataLine extends AbstractStructure
    */
   public function getJsonImages()
   {
-    static $json = FALSE;
-    if ($json === FALSE) {
-      $json = property_exists($this->data, 'images') ? json_encode($this->data->images) : NULL;
+    if ($this->_jsonImages === FALSE) {
+      $this->_jsonImages = property_exists($this->data, 'images') ? json_encode($this->data->images) : NULL;
     }
-    return $json;
+    return $this->_jsonImages;
   }
   
   /**
@@ -168,11 +176,10 @@ class DataLine extends AbstractStructure
    */
   public function getJsonParameters()
   {
-    static $json = FALSE;
-    if ($json === FALSE) {
-      $json = property_exists($this->data, 'parameters') ? json_encode($this->data->parameters) : NULL;
+    if ($this->_jsonParameters === FALSE) {
+      $this->_jsonParameters = property_exists($this->data, 'parameters') ? json_encode($this->data->parameters) : NULL;
     }
-    return $json;
+    return $this->_jsonParameters;
   }
   
   /**
@@ -188,11 +195,10 @@ class DataLine extends AbstractStructure
    */
   public function getJsonRelated()
   {
-    static $json = FALSE;
-    if ($json === FALSE) {
-      $json = property_exists($this->data, 'related') ? json_encode($this->data->related) : NULL;
+    if ($this->_jsonRelated === FALSE) {
+      $this->_jsonRelated = property_exists($this->data, 'related') ? json_encode($this->data->related) : NULL;
     }
-    return $json;
+    return $this->_jsonRelated;
   }
   
   /**

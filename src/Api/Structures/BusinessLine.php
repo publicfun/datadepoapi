@@ -8,6 +8,9 @@ namespace Datadepo\Api\Structures;
 class BusinessLine extends AbstractStructure
 {
   
+  /** @var BusinessSupplierLine[] */
+  private $_suppliers;
+  
   /**
    * @return string
    */
@@ -41,14 +44,13 @@ class BusinessLine extends AbstractStructure
    */
   public function getSuppliers()
   {
-    static $suppliers = NULL;
-    if ($suppliers === NULL) {
-      $suppliers = array();
+    if ($this->_suppliers === NULL) {
+      $this->_suppliers = array();
       foreach ($this->data->suppliers as $idName => $data) {
-        $suppliers[$idName] = new SupplierLine($data, $idName);
+        $this->_suppliers[$idName] = new BusinessSupplierLine($data, $idName);
       }
     }
-    return $suppliers;
+    return $this->_suppliers;
   }
   
   

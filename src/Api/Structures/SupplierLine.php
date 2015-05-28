@@ -22,6 +22,12 @@ namespace Datadepo\Api\Structures;
 class SupplierLine extends AbstractStructure
 {
   
+  /** @var SupplierPersonLine[] */
+  private $_persons;
+  
+  /** @var SupplierBankAccountLine[] */
+  private $_bankAccounts;
+  
   /**
    * @return integer
    */
@@ -154,14 +160,13 @@ class SupplierLine extends AbstractStructure
    */
   public function getPersons()
   {
-    static $persons = NULL;
-    if ($persons === NULL) {
-      $persons = array();
+    if ($this->_persons === NULL) {
+      $this->_persons = array();
       foreach ($this->data->persons as $inId => $data) {
-        $persons[$inId] = new SupplierPersonLine($data, $inId);
+        $this->_persons[$inId] = new SupplierPersonLine($data, $inId);
       }
     }
-    return $persons;
+    return $this->_persons;
   }
   
   /**
@@ -169,14 +174,13 @@ class SupplierLine extends AbstractStructure
    */
   public function getBankAccounts()
   {
-    static $bankAccounts = NULL;
-    if ($bankAccounts === NULL) {
-      $bankAccounts = array();
+    if ($this->_bankAccounts === NULL) {
+      $this->_bankAccounts = array();
       foreach ($this->data->bankAccounts as $inId => $data) {
-        $bankAccounts[$inId] = new SupplierBankAccountLine($data, $inId);
+        $this->_bankAccounts[$inId] = new SupplierBankAccountLine($data, $inId);
       }
     }
-    return $bankAccounts;
+    return $this->_bankAccounts;
   }
   
   

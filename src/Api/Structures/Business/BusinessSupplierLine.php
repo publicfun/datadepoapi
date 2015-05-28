@@ -17,6 +17,12 @@ class BusinessSupplierLine extends AbstractStructure
   /** @var string */
   protected $idName;
   
+  /** @var StoreLine */
+  private $_store;
+  
+  /** @var PriceLine[] */
+  private $_prices;
+  
   /**
    * @param array $data
    * @param string $idName
@@ -64,11 +70,10 @@ class BusinessSupplierLine extends AbstractStructure
    */
   public function getStore()
   {
-    static $store = NULL;
-    if ($store === NULL) {
-      $store = new StoreLine($this->data->store);
+    if ($this->_store === NULL) {
+      $this->_store = new StoreLine($this->data->store);
     }
-    return $store;
+    return $this->_store;
   }
   
   /**
@@ -76,14 +81,13 @@ class BusinessSupplierLine extends AbstractStructure
    */
   public function getPrices()
   {
-    static $prices = NULL;
-    if ($prices === NULL) {
-      $prices = array();
+    if ($this->_prices === NULL) {
+      $this->_prices = array();
       foreach ($this->data->prices as $currency => $data) {
-        $prices[$currency] = new PriceLine($data, $currency);
+        $this->_prices[$currency] = new PriceLine($data, $currency);
       }
     }
-    return $prices;
+    return $this->_prices;
   }
 
   
