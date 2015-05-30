@@ -5,7 +5,7 @@ class DataDepoResponse
 {
  
   const CODE_OK = 'ok';
-  const CODE_STOPPED = 'stopped';
+  const CODE_SUSPENDED = 'suspended';
   const CODE_RUNNING = 'running';
   const CODE_ERROR = 'error';
   

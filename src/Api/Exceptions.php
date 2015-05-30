@@ -9,9 +9,9 @@ class ApiException extends \Exception {}
 class ConfigurationException extends ApiException {}
 
 /**
- * Thrown when stop signal from datadepo is received
+ * Thrown when suspend signal from datadepo is received
  */
-class DataDepoStoppedException extends ApiException {}
+class DataDepoSuspendedException extends ApiException {}
 
 /**
  * Thrown when pid file is allready created

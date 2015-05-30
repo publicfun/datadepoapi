@@ -4,7 +4,6 @@ use Datadepo\Api;
 
 
 
-
 abstract class AbstractSynchronizer
 {
   
@@ -13,6 +12,9 @@ abstract class AbstractSynchronizer
   
   /** @var Api\IniConfiguration */
   protected $iniConfiguration;
+  
+  /** @var Api\ApiWrapper */
+  private $_wrapper;
   
   /**
    * @param Api\DataStores\IDataStore $dataStore
@@ -48,7 +50,7 @@ abstract class AbstractSynchronizer
   {
     try {
       $running = $this->runningState(); //check running file
-      $this->stoppedState(); //check stopped state
+      $this->suspendedState(); //check suspended state
       $response = $this->makeSync();
       $running->delete(); //delete running file
       return $response;
@@ -56,9 +58,9 @@ abstract class AbstractSynchronizer
     catch (Api\DataDepoRunningException $ex) {
       return new Api\DataDepoResponse(Api\DataDepoResponse::CODE_RUNNING);
     }
-    catch (Api\DataDepoStoppedException $ex) {
+    catch (Api\DataDepoSuspendedException $ex) {
       $running->delete();
-      return new Api\DataDepoResponse(Api\DataDepoResponse::CODE_STOPPED);
+      return new Api\DataDepoResponse(Api\DataDepoResponse::CODE_SUSPENDED);
     }
     catch (\Exception $ex) {
       if ($running !== NULL) {
@@ -66,6 +68,17 @@ abstract class AbstractSynchronizer
       }
       throw $ex;
     }
+  }
+  
+  /**
+   * @return Api\ApiWrapper
+   */
+  public function getWrapper()
+  {
+    if ($this->_wrapper === NULL) {
+      $this->_wrapper = new Api\ApiWrapper($this->iniConfiguration->get('datadepo'), $this->iniConfiguration->get('account'));
+    }
+    return $this->_wrapper;
   }
   
   
@@ -94,13 +107,13 @@ abstract class AbstractSynchronizer
   }
   
   /**
-   * @throws Api\DataDepoStoppedException
+   * @throws Api\DataDepoSuspendedException
    */
-  protected function stoppedState()
+  protected function suspendedState()
   {
-    $config = $this->dataStore->getConfig('stoppedToTime');
-    if (isset($config['stoppedToTime']) && $config['stoppedToTime'] >= time()) {
-      throw new Api\DataDepoStoppedException;
+    $config = $this->dataStore->getConfig('suspendedToTime');
+    if (isset($config['suspendedToTime']) && $config['suspendedToTime'] >= time()) {
+      throw new Api\DataDepoSuspendedException;
     }
     return FALSE;
   }
@@ -123,19 +136,17 @@ abstract class AbstractSynchronizer
     $filePath = $this->iniConfiguration->getTempPath() . '/' . $name . '.data';
     if ($config['rows'] == 0) {
       //create new request
-      $wrapper = new Api\ApiWrapper($this->iniConfiguration->get('datadepo'), $this->iniConfiguration->get('account'));
-      $response = $wrapper->request('data', $name, array('lastDownload' => $config['last']));
+      $response = $this->getWrapper()->request('data', $name, array('lastDownload' => $config['last']));
       
       //analyze response
-      switch ($wrapper->analyzeResponse($response)) {
+      switch ($this->getWrapper()->analyzeResponse($response)) {
         case 'url':
           //continue to download
-          $wrapper->download($response->url, $filePath);
+          $this->getWrapper()->download($response->url, $filePath);
           break;
-        case 'stop':
-          //stop processing for time in response
-          $this->stopProcessing($response['date']);
-          break;
+        case 'suspend':
+          //suspend processing for time in response
+          return $this->suspend($response->until);
         default:
           throw new Api\ApiException('Response from datadepo is unknow');
       }
@@ -195,6 +206,17 @@ abstract class AbstractSynchronizer
     }
     
     return new Api\DataDepoResponse(Api\DataDepoResponse::CODE_OK, NULL, array('processed' => $count));
+  }
+  
+  /**
+   * @param string $date
+   * @return array
+   */
+  protected function suspend($date)
+  {
+    $this->dataStore->setConfig('suspendedToTime', strtotime($date));
+    $this->getWrapper()->request('put', 'suspend', array('until' => $date));
+    return new Api\DataDepoResponse(Api\DataDepoResponse::CODE_SUSPENDED);
   }
   
 }

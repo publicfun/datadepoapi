@@ -52,8 +52,8 @@ class ApiWrapper
     if (isset($json->url)) {
       return 'url';
     }
-    elseif (isset($json->stop)) {
-      return 'stop';
+    elseif (isset($json->suspend)) {
+      return 'suspend';
     }
     return NULL;
   }
@@ -76,7 +76,6 @@ class ApiWrapper
     fclose($socket);
     chmod($filePath, 0777);
   }
-  
   
   
   
