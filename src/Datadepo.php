@@ -25,6 +25,8 @@ include_once DATADEPO_PATH . '/Structures/BusinessLine.php';
 include_once DATADEPO_PATH . '/Structures/CategoryLine.php';
 include_once DATADEPO_PATH . '/Structures/DataLine.php';
 include_once DATADEPO_PATH . '/Structures/SupplierLine.php';
+include_once DATADEPO_PATH . '/Structures/Data/ImageLine.php';
+include_once DATADEPO_PATH . '/Structures/Data/ParameterLine.php';
 include_once DATADEPO_PATH . '/Structures/Business/BusinessSupplierLine.php';
 include_once DATADEPO_PATH . '/Structures/Business/PriceLine.php';
 include_once DATADEPO_PATH . '/Structures/Business/StoreLine.php';

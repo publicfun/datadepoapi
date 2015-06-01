@@ -2,6 +2,7 @@
 namespace Datadepo\Api\Structures;
 
 /**
+ * @property-read string $json
  * @property-read string $checksum
  * @property-read string $primary
  * @property-read array $data
@@ -22,6 +23,14 @@ abstract class AbstractStructure
   {
     $this->json = $json;
     $this->data = json_decode($this->json);
+  }
+  
+  /**
+   * @return string
+   */
+  public function getJson()
+  {
+    return $this->json;
   }
   
   /**

@@ -14,8 +14,10 @@ namespace Datadepo\Api\Structures;
  * @property-read integer $categoryId
  * @property-read string $jsonImages
  * @property-read string $checksumImages
+ * @property-read ImageLine[] $images
  * @property-read string $jsonParameters
  * @property-read string $checksumParameters
+ * @property-read ParameterLine[] $parameters
  * @property-read string $jsonRelated
  * @property-read string $checksumRelated
  */
@@ -26,7 +28,13 @@ class DataLine extends AbstractStructure
   private $_jsonImages = FALSE;
   
   /** @var string */
+  private $_images = NULL;
+  
+  /** @var string */
   private $_jsonParameters = FALSE;
+  
+  /** @var string */
+  private $_parameters = NULL;
   
   /** @var string */
   private $_jsonRelated = FALSE;
@@ -172,6 +180,20 @@ class DataLine extends AbstractStructure
   }
   
   /**
+   * @return ImageLine[]
+   */
+  public function getImages()
+  {
+    if ($this->_images === NULL) {
+      $this->_images = array();
+      foreach ($this->data->images as $idName => $data) {
+        $this->_images[$idName] = new ImageLine($data, $idName);
+      }
+    }
+    return $this->_images;
+  }
+  
+  /**
    * @return string
    */
   public function getJsonParameters()
@@ -188,6 +210,20 @@ class DataLine extends AbstractStructure
   public function getChecksumParameters()
   {
     return $this->getJsonParameters() !== NULL ? md5($this->getJsonParameters()) : NULL;
+  }
+  
+  /**
+   * @return ParameterLine[]
+   */
+  public function getParameters()
+  {
+    if ($this->_parameters === NULL) {
+      $this->_parameters = array();
+      foreach ($this->data->parameters as $idName => $data) {
+        $this->_parameters[$idName] = new ParameterLine($data, $idName);
+      }
+    }
+    return $this->_parameters;
   }
   
   /**
