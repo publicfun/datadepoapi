@@ -23,21 +23,22 @@ class BusinessSynchronizer extends AbstractSynchronizer
   }
   
   /**
-   * @param array $checksums
-   * @parma array $temp
+   * @param Api\Collector $collector
    */
-  protected function processChunk($checksums, $temp)
+  protected function processChunk(Api\Collector $collector)
   {
     /* @var $temp Api\Structures\BusinessLine[] */
-    $actual = $this->dataStore->getChecksums('business', array_keys($checksums));
+    $actual = $this->dataStore->getChecksums('business', $collector->getPrimaryKeys());
     
     $this->dataStore->startChunkProcess();
-    foreach ($checksums as $code => $checksum) {
+    
+    /* @var $line Api\Structures\BusinessLine */
+    foreach ($collector as $code => $line) {
       if (!isset($actual[$code])) {
-        $this->dataStore->insertRow($temp[$code]);
+        $this->dataStore->insertRow($line);
       }
-      elseif ($actual[$code] != $checksum) {
-        $this->dataStore->updateRow($temp[$code]);
+      elseif ($actual[$code] != $line->getChecksum()) {
+        $this->dataStore->updateRow($line);
       }
     }
     $this->dataStore->endChunkProcess();

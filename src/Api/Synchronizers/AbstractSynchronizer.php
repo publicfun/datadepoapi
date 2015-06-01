@@ -37,10 +37,9 @@ abstract class AbstractSynchronizer
   abstract protected function wrapLine($line);
   
   /**
-   * @param array $checksums
-   * @parma array $temp
+   * @param Api\Collector $collector
    */
-  abstract protected function processChunk($checksums, $temp);
+  abstract protected function processChunk(Api\Collector $collector);
   
   
   /**
@@ -172,28 +171,25 @@ abstract class AbstractSynchronizer
     //read file lines
     $fileIterator = new \LimitIterator($file, $config['rows']+1, $limit);
     $count = 0;
-    $checksums = array();
-    $temp = array();
+    $collector = $this->createCollector();
+    
     foreach ($fileIterator as $line) {
       if (!$line) { continue; }
       
       //add line to front
-      $line = $this->wrapLine($line);
-      $checksums[$line->getPrimary()] = $line->getChecksum();
-      $temp[$line->getPrimary()] = $line;
+      $collector->add($this->wrapLine($line));
       $count++;
       
       //process
       if ($count % $processCount === 0) {
-        $this->processChunk($checksums, $temp);
-        $checksums = array();
-        $temp = array();
+        $this->processChunk($collector);
+        $collector = $this->createCollector();
       }
     }
     
     //sync rest
-    if ($checksums) {
-      $this->processChunk($checksums, $temp);
+    if (count($collector) > 0) {
+      $this->processChunk($collector);
     }
 
     //check num processed
@@ -206,6 +202,14 @@ abstract class AbstractSynchronizer
     }
     
     return new Api\DataDepoResponse(Api\DataDepoResponse::CODE_OK, NULL, array('processed' => $count));
+  }
+  
+  /**
+   * @return Api\Collector
+   */
+  protected function createCollector()
+  {
+    return new Api\Collector;
   }
   
   /**

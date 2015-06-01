@@ -10,6 +10,7 @@ include_once DATADEPO_PATH . '/IniConfiguration.php';
 include_once DATADEPO_PATH . '/RunningFiles.php';
 include_once DATADEPO_PATH . '/ApiWrapper.php';
 include_once DATADEPO_PATH . '/DataDepoSync.php';
+include_once DATADEPO_PATH . '/Collector.php';
 
 //synchronizers
 include_once DATADEPO_PATH . '/Synchronizers/AbstractSynchronizer.php';
