@@ -28,6 +28,22 @@ abstract class AbstractStructure
   /**
    * @return string
    */
+  public function getPrimary()
+  {
+    return NULL;
+  }
+  
+  /**
+   * @return \stdClass
+   */
+  public function getData()
+  {
+    return $this->data;
+  }
+  
+  /**
+   * @return string
+   */
   public function getJson()
   {
     return $this->json;
@@ -40,16 +56,6 @@ abstract class AbstractStructure
   {
     return md5($this->json);
   }
-  
-  /**
-   * @return string
-   */
-  abstract public function getPrimary();
-  
-  /**
-   * @return array
-   */
-  abstract public function getData();
   
   /**
    * @param string $name

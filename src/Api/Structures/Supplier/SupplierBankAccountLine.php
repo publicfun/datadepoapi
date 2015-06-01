@@ -2,6 +2,7 @@
 namespace Datadepo\Api\Structures;
 
 /**
+ * @property-read integer $primary
  * @property-read integer $idId
  * @property-read string $name
  * @property-read string $accountNumberPrefix
@@ -11,9 +12,6 @@ namespace Datadepo\Api\Structures;
  */
 class SupplierBankAccountLine extends AbstractStructure
 {
-  
-  /** @var array */
-  protected $data;
   
   /** @var integer */
   protected $inId;
@@ -31,6 +29,14 @@ class SupplierBankAccountLine extends AbstractStructure
   /**
    * @return string
    */
+  public function getJson()
+  {
+    return json_encode($this->data);
+  }
+  
+  /**
+   * @return string
+   */
   public function getPrimary()
   {
     return $this->getInId();
@@ -43,19 +49,6 @@ class SupplierBankAccountLine extends AbstractStructure
   public function getInId()
   {
     return $this->inId;
-  }
-  
-  /**
-   * @return array
-   */
-  public function getData()
-  {
-    $data = array('in_id' => $this->getInId(),
-                  'name' => $this->getName(),
-                  'account_number_prefix' => $this->getAccountNumberPrefix(),
-                  'account_number' => $this->getAccountNumber(),
-                  'account_number_postfix' => $this->getAccountNumberPostfix());
-    return $data;
   }
   
   /**

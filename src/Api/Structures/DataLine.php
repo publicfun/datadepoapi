@@ -64,39 +64,6 @@ class DataLine extends AbstractStructure
   }
   
   /**
-   * @return array
-   */
-  public function getData()
-  {
-    if ($this->getDeleted()) {
-      $data = array('code' => $this->getPrimary(),
-                    'json' => $this->json,
-                    'checksum' => $this->getChecksum(),
-                    'deleted' => 1);
-    }
-    else {
-      $data = array('project' => $this->getProject(),
-                    'code' => $this->getPrimary(),
-                    'name' => $this->getName(),
-                    'name_sub' => $this->getNameSub(),
-                    'pair_value' => $this->getPairValue(),
-                    'ean' => $this->getEan(),
-                    'isbn' => $this->getIsbn(),
-                    'description' => $this->getDescription(),
-                    'category_id' => $this->getCategoryId(),
-                    'json' => $this->json,
-                    'deleted' => 0,
-          
-                    //checksums
-                    'checksum' => $this->getChecksum(),
-                    'checksum_images' => $this->getChecksumImages(),
-                    'checksum_parameters' => $this->getChecksumParameters(),
-                    'checksum_related' => $this->getChecksumRelated());
-    }
-    return $data;
-  }
-  
-  /**
    * @return string
    */
   public function getProject()
@@ -187,7 +154,7 @@ class DataLine extends AbstractStructure
     if ($this->_images === NULL) {
       $this->_images = array();
       foreach ($this->data->images as $idName => $data) {
-        $this->_images[$idName] = new ImageLine($data, $idName);
+        $this->_images[$idName] = new ImageLine($data);
       }
     }
     return $this->_images;
@@ -220,7 +187,7 @@ class DataLine extends AbstractStructure
     if ($this->_parameters === NULL) {
       $this->_parameters = array();
       foreach ($this->data->parameters as $idName => $data) {
-        $this->_parameters[$idName] = new ParameterLine($data, $idName);
+        $this->_parameters[$idName] = new ParameterLine($data);
       }
     }
     return $this->_parameters;

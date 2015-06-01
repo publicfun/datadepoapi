@@ -11,9 +11,6 @@ namespace Datadepo\Api\Structures;
 class BusinessSupplierLine extends AbstractStructure
 {
   
-  /** @var array */
-  protected $data;
-  
   /** @var string */
   protected $idName;
   
@@ -36,17 +33,17 @@ class BusinessSupplierLine extends AbstractStructure
   /**
    * @return string
    */
-  public function getPrimary()
+  public function getJson()
   {
-    return $this->getSupplierIdName();
+    return json_encode($this->data);
   }
   
   /**
-   * @return array
+   * @return string
    */
-  public function getData()
+  public function getPrimary()
   {
-    return $this->data;
+    return $this->getSupplierIdName();
   }
   
   /**

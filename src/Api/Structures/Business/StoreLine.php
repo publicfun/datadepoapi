@@ -14,12 +14,8 @@ namespace Datadepo\Api\Structures;
 class StoreLine extends AbstractStructure
 {
   
-  /** @var array */
-  protected $data;
-  
   /**
    * @param array $data
-   * @param string $idName
    */
   public function __construct($data)
   {
@@ -29,17 +25,9 @@ class StoreLine extends AbstractStructure
   /**
    * @return string
    */
-  public function getPrimary()
+  public function getJson()
   {
-    return FALSE;
-  }
-  
-  /**
-   * @return array
-   */
-  public function getData()
-  {
-    return $this->data;
+    return json_encode($this->data);
   }
   
   /**

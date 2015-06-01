@@ -17,9 +17,6 @@ namespace Datadepo\Api\Structures;
 class PriceLine extends AbstractStructure
 {
   
-  /** @var array */
-  protected $data;
-  
   /** @var string */
   protected $currency;
   
@@ -36,6 +33,14 @@ class PriceLine extends AbstractStructure
   /**
    * @return string
    */
+  public function getJson()
+  {
+    return json_encode($this->data);
+  }
+  
+  /**
+   * @return string
+   */
   public function getPrimary()
   {
     return $this->getCurrency();
@@ -47,14 +52,6 @@ class PriceLine extends AbstractStructure
   public function getCurrency()
   {
     return $this->currency;
-  }
-  
-  /**
-   * @return array
-   */
-  public function getData()
-  {
-    return $this->data;
   }
   
   /**

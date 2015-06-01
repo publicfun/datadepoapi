@@ -115,19 +115,18 @@ class PdoDataStore implements IDataStore
     $table = NULL;
     switch (TRUE) {
       case $line instanceof Api\Structures\DataLine:
-        $table = 'datadepo_data';
+        $this->processDataLine($line);
         break;
       case $line instanceof Api\Structures\BusinessLine:
-        $table = 'datadepo_business';
+        $this->processBusinessLine($line);
         break;
       case $line instanceof Api\Structures\SupplierLine:
-        $table = 'datadepo_suppliers';
+        $this->processSupplierLine($line);
         break;
       case $line instanceof Api\Structures\CategoryLine:
-        $table = 'datadepo_categories';
+        $this->processCategoryLine($line);
         break;
     }
-    $this->insertOrUpdate($table, $line->getData());
   }
   
   /**
@@ -136,6 +135,83 @@ class PdoDataStore implements IDataStore
   public function updateRow(Api\Structures\AbstractStructure $line)
   {
     $this->insertRow($line);
+  }
+  
+  /**
+   * @param Api\Structures\DataLine $line
+   */
+  protected function processDataLine(Api\Structures\DataLine $line)
+  {
+    if ($line->getDeleted()) {
+      $data = array('code' => $line->getPrimary(),
+                    'json' => $line->getJson(),
+                    'checksum' => $line->getChecksum(),
+                    'deleted' => 1);
+    }
+    else {
+      $data = array('project' => $line->getProject(),
+                    'code' => $line->getPrimary(),
+                    'name' => $line->getName(),
+                    'name_sub' => $line->getNameSub(),
+                    'pair_value' => $line->getPairValue(),
+                    'ean' => $line->getEan(),
+                    'isbn' => $line->getIsbn(),
+                    'description' => $line->getDescription(),
+                    'category_id' => $line->getCategoryId(),
+                    'json' => $line->getJson(),
+                    'deleted' => 0,
+          
+                    //checksums
+                    'checksum' => $line->getChecksum(),
+                    'checksum_images' => $line->getChecksumImages(),
+                    'checksum_parameters' => $line->getChecksumParameters(),
+                    'checksum_related' => $line->getChecksumRelated());
+    }
+    $this->insertOrUpdate('datadepo_data', $data);
+  }
+  
+  /**
+   * @param Api\Structures\BusinessLine $line
+   */
+  protected function processBusinessLine(Api\Structures\BusinessLine $line)
+  {
+    $data = array('code' => $line->getPrimary(),
+                  'supplier_set' => $line->getSupplierSet(),
+                  'json' => $line->getJson(),
+                  'checksum' => $line->getChecksum());
+    $this->insertOrUpdate('datadepo_business', $data);
+  }
+  
+  /**
+   * @param Api\Structures\SupplierLine $line
+   */
+  protected function processSupplierLine(Api\Structures\SupplierLine $line)
+  {
+    $data = array('project' => $line->getProject(),
+                  'datadepo_id' => $line->getDataDepoId(),
+                  'name' => $line->getName(),
+                  'deleted' => intval($line->getDeleted()),
+                  'json' => $line->getJson(),
+                  'checksum' => $line->getChecksum());
+    $this->insertOrUpdate('datadepo_suppliers', $data);
+  }
+  
+  /**
+   * @param Api\Structures\CategoryLine $line
+   */
+  protected function processCategoryLine(Api\Structures\CategoryLine $line)
+  {
+    $data = array('project' => $line->getProject(),
+                  'datadepo_id' => $line->getDataDepoId(),
+                  'parent_id' => $line->getParentId(),
+                  'position' => $line->getPosition(),
+                  'name' => $line->getName(),
+                  'name_path' => $line->getNamePath(),
+                  'active' => intval($line->getActive()),
+                  'deleted' => intval($line->getDeleted()),
+                  'json' => $line->getJson(),
+                  'checksum' => $line->getChecksum()); 
+    $this->insertOrUpdate('datadepo_categories', $data);
   }
   
   

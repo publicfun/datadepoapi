@@ -9,36 +9,20 @@ namespace Datadepo\Api\Structures;
 class ParameterLine extends AbstractStructure
 {
   
-  /** @var array */
-  protected $data;
-  
-  /** @var array */
-  protected $idName;
-  
   /**
    * @param array $data
-   * @param string $idName
    */
-  public function __construct($data, $idName)
+  public function __construct($data)
   {
     $this->data = $data;
-    $this->idName = $idName;
   }
   
   /**
    * @return string
    */
-  public function getPrimary()
+  public function getJson()
   {
-    return $this->idName;
-  }
-  
-  /**
-   * @return array
-   */
-  public function getData()
-  {
-    return $this->data;
+    return json_encode($this->data);
   }
   
   /**

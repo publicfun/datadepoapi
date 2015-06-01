@@ -20,18 +20,6 @@ class BusinessLine extends AbstractStructure
   }
   
   /**
-   * @return array
-   */
-  public function getData()
-  {
-    $data = array('code' => $this->getPrimary(),
-                  'supplier_set' => $this->getSupplierSet(),
-                  'json' => $this->json,
-                  'checksum' => $this->getChecksum());
-    return $data;
-  }
-  
-  /**
    * @return string
    */
   public function getSupplierSet()

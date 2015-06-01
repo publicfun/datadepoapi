@@ -2,12 +2,16 @@
 namespace Datadepo\Api\Structures;
 
 /**
+ * @property-read integer $primary
+ * @property-read integer $idId
+ * @property-read string $name
+ * @property-read string $position
+ * @property-read string $phone1
+ * @property-read string $phone2
+ * @property-read string $email
  */
 class SupplierPersonLine extends AbstractStructure
 {
-  
-  /** @var array */
-  protected $data;
   
   /** @var integer */
   protected $inId;
@@ -25,6 +29,14 @@ class SupplierPersonLine extends AbstractStructure
   /**
    * @return string
    */
+  public function getJson()
+  {
+    return json_encode($this->data);
+  }
+  
+  /**
+   * @return string
+   */
   public function getPrimary()
   {
     return $this->getInId();
@@ -37,20 +49,6 @@ class SupplierPersonLine extends AbstractStructure
   public function getInId()
   {
     return $this->inId;
-  }
-  
-  /**
-   * @return array
-   */
-  public function getData()
-  {
-    $data = array('in_id' => $this->getInId(),
-                  'name' => $this->getName(),
-                  'position' => $this->getPosition(),
-                  'phone1' => $this->getPhone1(),
-                  'phone2' => $this->getPhone2(),
-                  'email' => $this->getEmail());
-    return $data;
   }
   
   /**

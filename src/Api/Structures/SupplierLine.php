@@ -53,20 +53,6 @@ class SupplierLine extends AbstractStructure
   }
   
   /**
-   * @return array
-   */
-  public function getData()
-  {
-    $data = array('project' => $this->getProject(),
-                  'datadepo_id' => $this->getDataDepoId(),
-                  'name' => $this->getName(),
-                  'deleted' => intval($this->getDeleted()),
-                  'json' => $this->json,
-                  'checksum' => $this->getChecksum());
-    return $data;
-  }
-  
-  /**
    * @return string
    */
   public function getProject()
