@@ -20,6 +20,7 @@ namespace Datadepo\Api\Structures;
  * @property-read ParameterLine[] $parameters
  * @property-read string $jsonRelated
  * @property-read string $checksumRelated
+ * @property-read RelatedLine[] $related
  */
 class DataLine extends AbstractStructure
 {
@@ -35,6 +36,9 @@ class DataLine extends AbstractStructure
   
   /** @var string */
   private $_parameters = NULL;
+  
+  /** @var string */
+  private $_related = NULL;
   
   /** @var string */
   private $_jsonRelated = FALSE;
@@ -153,8 +157,10 @@ class DataLine extends AbstractStructure
   {
     if ($this->_images === NULL) {
       $this->_images = array();
-      foreach ($this->data->images as $idName => $data) {
-        $this->_images[$idName] = new ImageLine($data);
+      if (property_exists($this->data, 'images')) {
+        foreach ($this->data->images as $idName => $data) {
+          $this->_images[$idName] = new ImageLine($data);
+        }
       }
     }
     return $this->_images;
@@ -186,8 +192,10 @@ class DataLine extends AbstractStructure
   {
     if ($this->_parameters === NULL) {
       $this->_parameters = array();
-      foreach ($this->data->parameters as $idName => $data) {
-        $this->_parameters[$idName] = new ParameterLine($data);
+      if (property_exists($this->data, 'parameters')) {
+        foreach ($this->data->parameters as $idName => $data) {
+          $this->_parameters[$idName] = new ParameterLine($data);
+        }
       }
     }
     return $this->_parameters;
@@ -210,6 +218,22 @@ class DataLine extends AbstractStructure
   public function getChecksumRelated()
   {
     return $this->getJsonRelated() !== NULL ? md5($this->getJsonRelated()) : NULL;
+  }
+  
+  /**
+   * @return RelatedLine[]
+   */
+  public function getRelated()
+  {
+    if ($this->_related === NULL) {
+      $this->_related = array();
+      if (property_exists($this->data, 'related')) {
+        foreach ($this->data->related as $idName => $data) {
+          $this->_related[$idName] = new RelatedLine($data);
+        }
+      }
+    }
+    return $this->_related;
   }
 
   
