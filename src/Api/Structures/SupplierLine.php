@@ -6,6 +6,7 @@ namespace Datadepo\Api\Structures;
  * @property-read integer $dataDepoId
  * @property-read bool $deleted
  * @property-read string $project
+ * @property-read string $idName
  * @property-read string $name
  * @property-read double $rabat
  * @property-read string $invoiceCompany
@@ -66,6 +67,14 @@ class SupplierLine extends AbstractStructure
   public function getName()
   {
     return $this->data->name;
+  }
+  
+  /**
+   * @return string
+   */
+  public function getIdName()
+  {
+    return $this->data->idName;
   }
   
   /**
