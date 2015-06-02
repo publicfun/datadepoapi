@@ -3,7 +3,7 @@ namespace Datadepo\Api\Structures;
 
 /**
  * @property-read integer $primary
- * @property-read integer $idId
+ * @property-read integer $inId
  * @property-read string $name
  * @property-read string $position
  * @property-read string $phone1
