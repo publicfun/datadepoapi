@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Datadepo\Api\Synchronizers\AbstractSynchronizer</title>
+
+	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+				<li class="active">
+					<a href="namespace-Datadepo.html">
+						Datadepo<span></span>
+					</a>
+
+						<ul>
+				<li class="active">
+					<a href="namespace-Datadepo.Api.html">
+						Api<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-Datadepo.Api.DataStores.html">
+						DataStores					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Datadepo.Api.Structures.html">
+						Structures					</a>
+
+						</li>
+				<li class="active">
+					<a href="namespace-Datadepo.Api.Synchronizers.html">
+						Synchronizers					</a>
+
+						</li>
+							</ul></li></ul></li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-Datadepo.Api.Synchronizers.AbstractSynchronizer.html">AbstractSynchronizer</a></li>
+				<li><a href="class-Datadepo.Api.Synchronizers.BusinessSynchronizer.html">BusinessSynchronizer</a></li>
+				<li><a href="class-Datadepo.Api.Synchronizers.CategorySynchronizer.html">CategorySynchronizer</a></li>
+				<li><a href="class-Datadepo.Api.Synchronizers.DataSynchronizer.html">DataSynchronizer</a></li>
+				<li><a href="class-Datadepo.Api.Synchronizers.SuppliersSynchronizer.html">SuppliersSynchronizer</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Datadepo.Api.Synchronizers.html" title="Summary of Datadepo\Api\Synchronizers"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class AbstractSynchronizer</h1>
+
+
+
+
+
+	<div>
+		<h4>Direct known subclasses</h4>
+			<a href="class-Datadepo.Api.Synchronizers.BusinessSynchronizer.html">Datadepo\Api\Synchronizers\BusinessSynchronizer</a>, 
+			<a href="class-Datadepo.Api.Synchronizers.CategorySynchronizer.html">Datadepo\Api\Synchronizers\CategorySynchronizer</a>, 
+			<a href="class-Datadepo.Api.Synchronizers.DataSynchronizer.html">Datadepo\Api\Synchronizers\DataSynchronizer</a>, 
+			<a href="class-Datadepo.Api.Synchronizers.SuppliersSynchronizer.html">Datadepo\Api\Synchronizers\SuppliersSynchronizer</a>
+	</div>
+
+
+
+
+
+
+	<div class="info">
+		<b>Abstract</b><br>
+		
+		<b>Namespace:</b> <a href="namespace-Datadepo.html">Datadepo</a>\<a href="namespace-Datadepo.Api.html">Api</a>\<a href="namespace-Datadepo.Api.Synchronizers.html">Synchronizers</a><br>
+		
+
+			<b>Located at</b> <a href="source-class-Datadepo.Api.Synchronizers.AbstractSynchronizer.html#7-226" title="Go to source code">Api/Synchronizers/AbstractSynchronizer.php</a>
+		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Datadepo.Api.Synchronizers.AbstractSynchronizer.html#19-27" title="Go to source code">__construct</a>( <span><code><a href="class-Datadepo.Api.DataStores.IDataStore.html">Datadepo\Api\DataStores\IDataStore</a></code> <var>$dataStore</var></span>, <span><code><a href="class-Datadepo.Api.IniConfiguration.html">Datadepo\Api\IniConfiguration</a></code> <var>$iniConfiguration</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$dataStore</var></dt>
+					<dd></dd>
+					<dt><var>$iniConfiguration</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="makeSync" id="_makeSync">
+
+		<td class="attributes"><code>
+			abstract protected 
+
+			<code><a href="class-Datadepo.Api.DataDepoResponse.html">Datadepo\Api\DataDepoResponse</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_makeSync">#</a>
+		<code><a href="source-class-Datadepo.Api.Synchronizers.AbstractSynchronizer.html#29-32" title="Go to source code">makeSync</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Datadepo.Api.DataDepoResponse.html">Datadepo\Api\DataDepoResponse</a></code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="wrapLine" id="_wrapLine">
+
+		<td class="attributes"><code>
+			abstract protected 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_wrapLine">#</a>
+		<code><a href="source-class-Datadepo.Api.Synchronizers.AbstractSynchronizer.html#34-37" title="Go to source code">wrapLine</a>( <span> <var>$line</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+				<h4>Retrun</h4>
+				<div class="list">
+						Api\Structures\AbstractStructure<br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="processChunk" id="_processChunk">
+
+		<td class="attributes"><code>
+			abstract protected 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_processChunk">#</a>
+		<code><a href="source-class-Datadepo.Api.Synchronizers.AbstractSynchronizer.html#39-42" title="Go to source code">processChunk</a>( <span><code><a href="class-Datadepo.Api.Collector.html">Datadepo\Api\Collector</a></code> <var>$collector</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$collector</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="sync" id="_sync">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Datadepo.Api.DataDepoResponse.html">Datadepo\Api\DataDepoResponse</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_sync">#</a>
+		<code><a href="source-class-Datadepo.Api.Synchronizers.AbstractSynchronizer.html#45-70" title="Go to source code">sync</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Datadepo.Api.DataDepoResponse.html">Datadepo\Api\DataDepoResponse</a></code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getWrapper" id="_getWrapper">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Datadepo.Api.ApiWrapper.html">Datadepo\Api\ApiWrapper</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getWrapper">#</a>
+		<code><a href="source-class-Datadepo.Api.Synchronizers.AbstractSynchronizer.html#72-81" title="Go to source code">getWrapper</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Datadepo.Api.ApiWrapper.html">Datadepo\Api\ApiWrapper</a></code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="runningState" id="_runningState">
+
+		<td class="attributes"><code>
+			 protected 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_runningState">#</a>
+		<code><a href="source-class-Datadepo.Api.Synchronizers.AbstractSynchronizer.html#86-97" title="Go to source code">runningState</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><a href="class-Datadepo.Api.DataDepoRunningException.html">Datadepo\Api\DataDepoRunningException</a></code>
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getRunningFileName" id="_getRunningFileName">
+
+		<td class="attributes"><code>
+			 protected 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getRunningFileName">#</a>
+		<code><a href="source-class-Datadepo.Api.Synchronizers.AbstractSynchronizer.html#99-106" title="Go to source code">getRunningFileName</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="suspendedState" id="_suspendedState">
+
+		<td class="attributes"><code>
+			 protected 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_suspendedState">#</a>
+		<code><a href="source-class-Datadepo.Api.Synchronizers.AbstractSynchronizer.html#108-118" title="Go to source code">suspendedState</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><a href="class-Datadepo.Api.DataDepoSuspendedException.html">Datadepo\Api\DataDepoSuspendedException</a></code>
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="callSync" id="_callSync">
+
+		<td class="attributes"><code>
+			 protected 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_callSync">#</a>
+		<code><a href="source-class-Datadepo.Api.Synchronizers.AbstractSynchronizer.html#124-205" title="Go to source code">callSync</a>( <span>string <var>$name</var></span>, <span>array <var>$configRaw</var></span>, <span>integer <var>$limit</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd></dd>
+					<dt><var>$configRaw</var></dt>
+					<dd></dd>
+					<dt><var>$limit</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createCollector" id="_createCollector">
+
+		<td class="attributes"><code>
+			 protected 
+
+			<code><a href="class-Datadepo.Api.Collector.html">Datadepo\Api\Collector</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createCollector">#</a>
+		<code><a href="source-class-Datadepo.Api.Synchronizers.AbstractSynchronizer.html#207-213" title="Go to source code">createCollector</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Datadepo.Api.Collector.html">Datadepo\Api\Collector</a></code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="suspend" id="_suspend">
+
+		<td class="attributes"><code>
+			 protected 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_suspend">#</a>
+		<code><a href="source-class-Datadepo.Api.Synchronizers.AbstractSynchronizer.html#215-224" title="Go to source code">suspend</a>( <span>string <var>$date</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$date</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="dataStore" id="$dataStore">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-Datadepo.Api.DataStores.IDataStore.html">Datadepo\Api\DataStores\IDataStore</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Datadepo.Api.Synchronizers.AbstractSynchronizer.html#10-11" title="Go to source code"><var>$dataStore</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$dataStore" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="iniConfiguration" id="$iniConfiguration">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-Datadepo.Api.IniConfiguration.html">Datadepo\Api\IniConfiguration</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Datadepo.Api.Synchronizers.AbstractSynchronizer.html#13-14" title="Go to source code"><var>$iniConfiguration</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$iniConfiguration" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>
