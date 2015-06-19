@@ -165,19 +165,16 @@ abstract class AbstractSynchronizer
       $file->rewind();
     }
     
-    
     $processCount = $this->iniConfiguration->get('limits', 'processCount');
-    
-    //read file lines
-    $fileIterator = new \LimitIterator($file, $config['rows']+1, $limit);
-    $count = 0;
     $collector = $this->createCollector();
+    $count = 0;
     
-    foreach ($fileIterator as $line) {
-      if (!$line) { continue; }
-      
+    //skip line
+    $file->seek($config['rows']+1);
+    while ((!$file->eof() || $file->current() !== FALSE) && $count < $limit) {
       //add line to front
-      $collector->add($this->wrapLine($line));
+      $line = $this->wrapLine($file->current());
+      $collector->add($line);
       $count++;
       
       //process
@@ -185,6 +182,7 @@ abstract class AbstractSynchronizer
         $this->processChunk($collector);
         $collector = $this->createCollector();
       }
+      $file->next();
     }
     
     //sync rest
