@@ -1,19 +1,14 @@
 <?php
 namespace Datadepo\Api\Structures;
 
-
 /**
- * @property-read string $supplierIdName
- * @property-read string $supplierCode
+ * @property-read string $code
+ * @property-read array $options
  * @property-read StoreLine $store
  * @property-read PriceLine[] $prices
- * @property-read VariantLine[] $variants
  */
-class BusinessSupplierLine extends AbstractStructure
+class VariantLine extends AbstractStructure
 {
-  
-  /** @var string */
-  protected $idName;
   
   /** @var StoreLine */
   private $_store;
@@ -21,17 +16,12 @@ class BusinessSupplierLine extends AbstractStructure
   /** @var PriceLine[] */
   private $_prices;
   
-  /** @var VariantLine[] */
-  private $_variants;
-  
   /**
    * @param array $data
-   * @param string $idName
    */
-  public function __construct($data, $idName)
+  public function __construct($data)
   {
     $this->data = $data;
-    $this->idName = $idName;
   }
   
   /**
@@ -45,25 +35,17 @@ class BusinessSupplierLine extends AbstractStructure
   /**
    * @return string
    */
-  public function getPrimary()
+  public function getCode()
   {
-    return $this->getSupplierIdName();
+    return $this->data->code;
   }
   
   /**
    * @return string
    */
-  public function getSupplierIdName()
+  public function getOptions()
   {
-    return $this->idName;
-  }
-  
-  /**
-   * @return string
-   */
-  public function getSupplierCode()
-  {
-    return $this->data->store->supplier_code;
+    return $this->data->options;
   }
   
   /**
@@ -91,21 +73,5 @@ class BusinessSupplierLine extends AbstractStructure
     return $this->_prices;
   }
   
-  /**
-   * @return PriceLine[]
-   */
-  public function getVariants()
-  {
-    if ($this->_variants === NULL) {
-      $this->_variants = array();
-      if (isset($this->data->variants)) {
-        foreach ($this->data->variants as $hash => $data) {
-          $this->_variants[$hash] = new VariantLine($data);
-        }
-      }
-    }
-    return $this->_variants;
-  }
-
   
 }

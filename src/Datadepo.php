@@ -31,5 +31,6 @@ include_once DATADEPO_PATH . '/Structures/Data/RelatedLine.php';
 include_once DATADEPO_PATH . '/Structures/Business/BusinessSupplierLine.php';
 include_once DATADEPO_PATH . '/Structures/Business/PriceLine.php';
 include_once DATADEPO_PATH . '/Structures/Business/StoreLine.php';
+include_once DATADEPO_PATH . '/Structures/Business/VariantLine.php';
 include_once DATADEPO_PATH . '/Structures/Supplier/SupplierBankAccountLine.php';
 include_once DATADEPO_PATH . '/Structures/Supplier/SupplierPersonLine.php';
