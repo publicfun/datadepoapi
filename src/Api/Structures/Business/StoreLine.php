@@ -3,7 +3,7 @@ namespace Datadepo\Api\Structures;
 
 /**
  * @property-read string $state
- * @property-read \DateTime $ucpomingDate
+ * @property-read \DateTime $upcomingDate
  * @property-read integer $count
  * @property-read array $note
  * @property-read integer $availability
