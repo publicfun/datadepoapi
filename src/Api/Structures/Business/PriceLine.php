@@ -9,7 +9,6 @@ namespace Datadepo\Api\Structures;
  * @property-read double $priceRetail
  * @property-read double $price
  * @property-read double $pricePhe
- * @property-read double $priceAdd
  * @property-read double $priceMin
  * @property-read double $priceSale
  * @property-read double $priceSaleFinal
@@ -106,15 +105,6 @@ class PriceLine extends AbstractStructure
   }
   
   /**
-   * Additional price to sale price (same behaviour as phe)
-   * @return double
-   */
-  public function getPriceAdd()
-  {
-    return $this->data->priceAdd;
-  }
-  
-  /**
    * Minimal sale price
    * @return double
    */
@@ -138,7 +128,7 @@ class PriceLine extends AbstractStructure
    */
   public function getPriceSaleFinal()
   {
-    return $this->getPriceSale() + $this->getPricePhe() + $this->getPriceAdd();
+    return $this->getPriceSale() + $this->getPricePhe();
   }
   
 }
