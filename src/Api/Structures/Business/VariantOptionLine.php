@@ -4,13 +4,13 @@ namespace Datadepo\Api\Structures;
 /**
  * @property-read string $title
  * @property-read string $value
- * @property-read ImageLine $titleImage
+ * @property-read ImageLine $optionImage
  */
 class VariantOptionLine extends AbstractStructure
 {
   
   /** @var ImageLine */
-  private $_titleImage;
+  private $_optionImage;
   
   /**
    * @param array $data
@@ -47,12 +47,12 @@ class VariantOptionLine extends AbstractStructure
   /**
    * @return ImageLine
    */
-  public function getTitleImage()
+  public function getOptionImage()
   {
-    if ($this->_titleImage === NULL && isset($this->data->titleImage)) {
-      $this->_titleImage = new ImageLine($this->data->titleImage);
+    if ($this->_optionImage === NULL && isset($this->data->optionImage)) {
+      $this->_optionImage = new ImageLine($this->data->optionImage);
     }
-    return $this->_titleImage;
+    return $this->_optionImage;
   }
   
 }
