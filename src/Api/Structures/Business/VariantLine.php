@@ -3,12 +3,15 @@ namespace Datadepo\Api\Structures;
 
 /**
  * @property-read string $code
- * @property-read array $options
+ * @property-read VariantOptionLine[] $options
  * @property-read StoreLine $store
  * @property-read PriceLine[] $prices
  */
 class VariantLine extends AbstractStructure
 {
+  
+  /** @var VariantOptionLine[] */
+  private $_options;
   
   /** @var StoreLine */
   private $_store;
@@ -41,11 +44,17 @@ class VariantLine extends AbstractStructure
   }
   
   /**
-   * @return string
+   * @return VariantOptionLine[]
    */
   public function getOptions()
   {
-    return $this->data->options;
+    if ($this->_options === NULL) {
+      $this->_options = array();
+      foreach ($this->data->options as $idName => $option) {
+        $this->_options[$idName] = new VariantOptionLine($option);
+      }
+    }
+    return $this->_options;
   }
   
   /**
