@@ -96,7 +96,7 @@ class ApiWrapper
     
     $host = $url['host'];
     $path = $url['path'] . (isset($url['query']) ? '?' .  $url['query'] : '');
-    $socket = fsockopen($host, 443, $errno, $errstr, $this->settingsDatadepo['connectTimeout']);
+    $socket = fsockopen('ssl://' . $host, 443, $errno, $errstr, $this->settingsDatadepo['connectTimeout']);
     if (!$socket) {
       throw new ApiException($errstr);
     }
