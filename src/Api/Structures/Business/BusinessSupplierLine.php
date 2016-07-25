@@ -92,7 +92,7 @@ class BusinessSupplierLine extends AbstractStructure
   }
   
   /**
-   * @return PriceLine[]
+   * @return VariantLine[]
    */
   public function getVariants()
   {
