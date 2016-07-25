@@ -3,6 +3,7 @@ namespace Datadepo\Api\Structures;
 
 /**
  * @property-read string $code
+ * @property-read string $name
  * @property-read VariantOptionLine[] $options
  * @property-read StoreLine $store
  * @property-read PriceLine[] $prices
@@ -41,6 +42,14 @@ class VariantLine extends AbstractStructure
   public function getCode()
   {
     return $this->data->code;
+  }
+
+  /**
+   * @return string
+   */
+  public function getName()
+  {
+    return isset($this->data->name) ? $this->data->name : NULL;
   }
   
   /**

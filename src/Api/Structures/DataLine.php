@@ -11,6 +11,7 @@ namespace Datadepo\Api\Structures;
  * @property-read string $ean
  * @property-read string $isbn
  * @property-read string $description
+ * @property-read string $manufacturer
  * @property-read integer $categoryId
  * @property-read string $jsonImages
  * @property-read string $checksumImages
@@ -121,6 +122,14 @@ class DataLine extends AbstractStructure
   public function getDescription()
   {
     return $this->data->description;
+  }
+
+  /**
+   * @return string
+   */
+  public function getManufacturer()
+  {
+    return isset($this->data->manufacturer) ? $this->data->manufacturer : NULL;
   }
   
   /**
